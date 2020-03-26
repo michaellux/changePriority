@@ -1,0 +1,22 @@
+.main-title {
+  text-align: center;
+  font-size: 2rem;
+}
+.task-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+}
+.task-list__card {
+  min-width: 50%;
+}
+.task__title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 1rem;
+}
+.btn.change-priority__button,.btn.change-priority__button:hover, .btn.change-priority__button:focus{
+    background-color: transparent;
+}
