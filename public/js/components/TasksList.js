@@ -10,12 +10,17 @@ class TaskList extends React.Component {
 
     render() {
 
-        const tasksComponents = this.state.tasks.map((task) =>
+        const tasks = this.state.tasks.sort((a, b) => (
+            b.priority - a.priority
+        ));
+
+        const tasksComponents = tasks.map((task) =>
         (
             <Task
                 key={'task-' + task.id}
                 id={task.id}
                 title={task.title}
+                priority={task.priority}
             />
         ));
 
