@@ -1,48 +1,56 @@
 class Task extends React.Component {
 
+    changePriority = (id,priority,e) => {
+        this.props.onChangePriority(id,priority,e);
+    };
+
+    componentDidMount() {
+        $('.ui.dropdown')
+            .dropdown()
+            ;
+    }
+
     render() {
 
         const changeColorPriority = () => {
-
-            console.log(Data.priorities);
 
             let priorityColor = "";
 
             switch (this.props.priority) {
                 case Data.priorities.LOW_PRIORITY:
-                    priorityColor = 'light-blue darken-2';
+                    priorityColor = 'ui blue button';
                     break;
                 case Data.priorities.NORMAL_PRIORITY:
-                    priorityColor = 'green darken-2';
+                    priorityColor = 'ui green button';
                     break;
                 case Data.priorities.HIGH_PRIORITY:
-                    priorityColor = 'deep-orange darken-2';
+                    priorityColor = 'ui red button';
                     break;
                 default:
                     break;
             }
 
-            console.log(this.props.priority);
-
             return priorityColor;
         };
 
         return (
-            <div className={"task-list__card task task_normal  card horizontal " + changeColorPriority()}>
+            <div className={"card task-list__card task task_normal  card horizontal " + changeColorPriority()}>
                 <div className="card-stacked">
-                    <div className="card-content task__content">
-                        <h2 className="task__title">{this.props.title}</h2>
+                    <div className="content task__content">
+                        <h2 className="header task__title">{this.props.title}</h2>
                     </div>
-                    <div className="card-action task__action">
-                        <ul id="dropdown2" className="dropdown-content action__change-priority">
-                            <li><a href="#!">one<span className="badge">1</span></a></li>
-                            <li><a href="#!">two<span className="new badge">1</span></a></li>
-                            <li><a href="#!">three</a></li>
-                        </ul>
-                        <a className="btn dropdown-trigger change-priority__button" href="#!" data-target="dropdown2">Change the priority<i className="material-icons right">arrow_drop_down</i></a>
+                    <div className="ui selection dropdown task__action">
+                        <input type="hidden" name="gender"/>
+                        <i className="dropdown icon"></i>
+                        <div className="default text">Change Priority</div>
+                        <div className="menu action__change-priority">
+                            <div className="item action__change-priority_low" data-value="0" onClick={(e) => this.changePriority(this.props.id, Data.priorities.LOW_PRIORITY, e)}>Low</div>
+                            <div className="item action__change-priority_normal" data-value="1" onClick={(e) => this.changePriority(this.props.id, Data.priorities.NORMAL_PRIORITY, e)}>Normal</div>
+                            <div className="item action__change-priority_high" data-value="2" onClick={(e) => this.changePriority(this.props.id, Data.priorities.HIGH_PRIORITY, e)}>High</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                </div>
         );
     };
 }

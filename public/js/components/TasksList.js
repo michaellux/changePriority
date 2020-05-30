@@ -6,6 +6,23 @@ class TaskList extends React.Component {
 
     componentDidMount() {
         this.setState({tasks: Data.tasks});
+
+        
+    }
+
+    sortTasks = (taskId,priority) => {
+        const nextTasks = this.state.tasks.map((task) => {
+            if(task.id === taskId) {
+                return Object.assign({}, task, {
+                   priority: priority
+                });
+            } else {
+                return task;
+            }
+        });
+        this.setState({
+            tasks: nextTasks,
+        });
     }
 
     render() {
@@ -21,6 +38,7 @@ class TaskList extends React.Component {
                 id={task.id}
                 title={task.title}
                 priority={task.priority}
+                onChangePriority={this.sortTasks}
             />
         ));
 
@@ -29,7 +47,7 @@ class TaskList extends React.Component {
                 {tasksComponents}
             </ul>
         );
-    };
+    }
 }
 
 ReactDOM.render(<TaskList />,document.getElementById("root"));

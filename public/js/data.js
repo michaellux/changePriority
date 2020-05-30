@@ -27,5 +27,4 @@ window.Data = (function () {
     ];
 
     return { tasks: tasks, priorities: priorities };
-
 }());
